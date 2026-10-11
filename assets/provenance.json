@@ -1,0 +1,462 @@
+[
+  {
+    "file": "1091500-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "1091500.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "1145360-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1145360/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "1145360.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1145360/header.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "1174180-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1174180/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "1174180.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "1245620-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "1245620.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "292030-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/292030/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "413150-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/413150/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "814380-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/814380/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "814380.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "990080-cover.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/990080/library_600x900_2x.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "990080.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg",
+    "role": "sample game artwork"
+  },
+  {
+    "file": "saturn-poster.jpg",
+    "origin": "Frame at 2 seconds from user-provided C:/Users/stell/OneDrive/Masaüstü/saturn-monochrome-moewalls-com (1).mp4; captured using Chromium video decoding.",
+    "role": "poster"
+  },
+  {
+    "file": "icon.png",
+    "origin": "Authored SVG assets/favicon.svg rendered with Chromium",
+    "role": "application icon"
+  },
+  {
+    "file": "icon.ico",
+    "origin": "Derived from icon.png with Pillow in multiple Windows icon sizes",
+    "role": "Windows icon"
+  },
+  {
+    "file": "saturn.mp4",
+    "origin": "User-supplied desktop video saturn-monochrome-moewalls-com (1).mp4",
+    "role": "animated background"
+  },
+  {
+    "file": "manrope.ttf",
+    "origin": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf",
+    "license": "SIL Open Font License; manrope-OFL.txt"
+  },
+  {
+    "file": "rajdhani-light.ttf",
+    "origin": "https://raw.githubusercontent.com/google/fonts/main/ofl/rajdhani/Rajdhani-Light.ttf",
+    "license": "SIL Open Font License; rajdhani-OFL.txt"
+  },
+  {
+    "file": "covers/730.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/730/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "730"
+  },
+  {
+    "file": "covers/570.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/570/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "570"
+  },
+  {
+    "file": "covers/3393110.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3393110/a5a6447c5d72174e8e9eb7dfc68d37a9597bf619/capsule_231x87.jpg?t=1791205225",
+    "role": "Steam catalogue cover",
+    "appId": "3393110"
+  },
+  {
+    "file": "covers/4001890.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4001890/8f65bb2b78d37a9147aa79c970a51610e6955bf1/capsule_231x87.jpg?t=1788788717",
+    "role": "Steam catalogue cover",
+    "appId": "4001890"
+  },
+  {
+    "file": "covers/4080220.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4080220/b2e806003c348d3348774cddb10e5b31cd787ecf/capsule_231x87.jpg?t=1790973254",
+    "role": "Steam catalogue cover",
+    "appId": "4080220"
+  },
+  {
+    "file": "covers/1174180.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1174180/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1174180"
+  },
+  {
+    "file": "covers/1304930.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1304930/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1304930"
+  },
+  {
+    "file": "covers/578080.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/578080/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "578080"
+  },
+  {
+    "file": "covers/3240220.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/3240220/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "3240220"
+  },
+  {
+    "file": "covers/1867240.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1867240/11d3bb7607c5568c61108fe70e7c670b4940269e/capsule_231x87.jpg?t=1790774170",
+    "role": "Steam catalogue cover",
+    "appId": "1867240"
+  },
+  {
+    "file": "covers/1091500.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1091500"
+  },
+  {
+    "file": "covers/227300.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/227300/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "227300"
+  },
+  {
+    "file": "covers/381210.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/381210/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "381210"
+  },
+  {
+    "file": "covers/1808500.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1808500/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1808500"
+  },
+  {
+    "file": "covers/2483190.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2483190/bbb9f95cefd82bfdc417f25d6d3d1b740d9d42dc/capsule_231x87_alt_assets_5.jpg?t=1791312088",
+    "role": "Steam catalogue cover",
+    "appId": "2483190"
+  },
+  {
+    "file": "covers/2406770.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2406770/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2406770"
+  },
+  {
+    "file": "covers/252490.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/252490/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "252490"
+  },
+  {
+    "file": "covers/582660.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/582660/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "582660"
+  },
+  {
+    "file": "covers/261550.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/261550/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "261550"
+  },
+  {
+    "file": "covers/552990.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/552990/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "552990"
+  },
+  {
+    "file": "covers/1086940.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1086940"
+  },
+  {
+    "file": "covers/2183900.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2183900/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2183900"
+  },
+  {
+    "file": "covers/3768760.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3768760/6833c82f518e5a4d0881152fa9cbf01c5d103924/capsule_231x87_alt_assets_4.jpg?t=1791285093",
+    "role": "Steam catalogue cover",
+    "appId": "3768760"
+  },
+  {
+    "file": "covers/1326470.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1326470/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1326470"
+  },
+  {
+    "file": "covers/108600.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/108600/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "108600"
+  },
+  {
+    "file": "covers/1771300.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1771300/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1771300"
+  },
+  {
+    "file": "covers/1551360.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1551360/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1551360"
+  },
+  {
+    "file": "covers/1172470.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1172470/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1172470"
+  },
+  {
+    "file": "covers/553850.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/553850/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "553850"
+  },
+  {
+    "file": "covers/2807960.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2807960/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2807960"
+  },
+  {
+    "file": "covers/230410.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/230410/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "230410"
+  },
+  {
+    "file": "covers/2767030.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2767030/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2767030"
+  },
+  {
+    "file": "covers/1665460.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1665460/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1665460"
+  },
+  {
+    "file": "covers/1623730.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1623730/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1623730"
+  },
+  {
+    "file": "covers/3932890.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3932890/236dcc64545c082a9f4382757390ce91c474ddbe/capsule_231x87_alt_assets_2.jpg?t=1785782094",
+    "role": "Steam catalogue cover",
+    "appId": "3932890"
+  },
+  {
+    "file": "covers/489830.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/489830/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "489830"
+  },
+  {
+    "file": "covers/1144200.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1144200/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1144200"
+  },
+  {
+    "file": "covers/3527290.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/1844964d7a353e50eb3cc979ea922729d8c1b0ad/capsule_231x87.jpg?t=1790591892",
+    "role": "Steam catalogue cover",
+    "appId": "3527290"
+  },
+  {
+    "file": "covers/3764200.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3764200/64f506b9b6210df6055136e7017f2082957e5b22/capsule_231x87.jpg?t=1779840172",
+    "role": "Steam catalogue cover",
+    "appId": "3764200"
+  },
+  {
+    "file": "covers/2138720.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2138720/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2138720"
+  },
+  {
+    "file": "covers/3949040.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3949040/05b77bc86d227612ded8e54753063e43c44698c4/capsule_231x87.jpg?t=1789134289",
+    "role": "Steam catalogue cover",
+    "appId": "3949040"
+  },
+  {
+    "file": "covers/2531310.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2531310/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2531310"
+  },
+  {
+    "file": "covers/1142710.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1142710/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1142710"
+  },
+  {
+    "file": "covers/2050650.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2050650/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2050650"
+  },
+  {
+    "file": "covers/270880.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/270880/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "270880"
+  },
+  {
+    "file": "covers/3008130.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/3008130/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "3008130"
+  },
+  {
+    "file": "covers/3513350.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3513350/ccb275636063d8aa7fe8f74afc5fb369eb68c505/capsule_231x87.jpg?t=1791432895",
+    "role": "Steam catalogue cover",
+    "appId": "3513350"
+  },
+  {
+    "file": "covers/2300320.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2300320/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2300320"
+  },
+  {
+    "file": "covers/4126040.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4126040/9cd26f736939c12a37f54cd3a49a9c08a318ec03/capsule_231x87.jpg?t=1790849962",
+    "role": "Steam catalogue cover",
+    "appId": "4126040"
+  },
+  {
+    "file": "covers/1158310.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1158310/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1158310"
+  },
+  {
+    "file": "covers/2651280.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2651280/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2651280"
+  },
+  {
+    "file": "covers/814380.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/814380/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "814380"
+  },
+  {
+    "file": "covers/2369390.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2369390/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2369390"
+  },
+  {
+    "file": "covers/2073620.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/2073620/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "2073620"
+  },
+  {
+    "file": "covers/632360.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/632360/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "632360"
+  },
+  {
+    "file": "covers/374320.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/374320/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "374320"
+  },
+  {
+    "file": "covers/3010850.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/3010850/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "3010850"
+  },
+  {
+    "file": "covers/3595270.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3595270/05b8f73493348dfa9b6662dc13a6740929ea195b/capsule_231x87.jpg?t=1778886604",
+    "role": "Steam catalogue cover",
+    "appId": "3595270"
+  },
+  {
+    "file": "covers/3751260.jpg",
+    "origin": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3751260/512cea7b8d6470681fc081ab933290bf14a8f956/capsule_231x87.jpg?t=1791298326",
+    "role": "Steam catalogue cover",
+    "appId": "3751260"
+  },
+  {
+    "file": "covers/1888930.jpg",
+    "origin": "https://cdn.akamai.steamstatic.com/steam/apps/1888930/library_600x900_2x.jpg",
+    "role": "Steam catalogue cover",
+    "appId": "1888930"
+  }
+]

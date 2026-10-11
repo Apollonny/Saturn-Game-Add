@@ -1,0 +1,26 @@
+'use strict';
+const {test}=require('node:test'),assert=require('node:assert/strict'),{EventEmitter}=require('node:events');
+const {decodeSonyReport,decodeXInput,profileForDevice,ControllerService}=require('../electron/controllers.cjs');
+const {InputRepeater,directionOf}=require('../controller-core.js');
+const sony={vendorId:0x054c,productId:0x0ce6,usagePage:1,usage:5,path:'private-device-path'};
+function report(id,size,offset,base){const data=Buffer.alloc(size);data[0]=id;for(let i=0;i<4;i++)data[offset+i]=128;data[base]=8|32;return data;}
+for(const [name,profile,id,size,offset,base] of [['DS4 USB','dualshock4',1,64,1,5],['DS4 Bluetooth','dualshock4',0x11,78,3,7],['DualSense USB','dualsense',1,64,1,8],['DualSense Bluetooth','dualsense',0x31,78,2,9],['DualSense Bluetooth basic','dualsense',1,10,1,5],['DualSense Bluetooth padded basic','dualsense',1,78,1,5]]){
+ test(name+' maps Cross to confirm and keeps centered axes neutral',()=>{const input=decodeSonyReport(profile,report(id,size,offset,base));assert.equal(input.buttons[0],true);assert.equal(input.buttons.filter(Boolean).length,1);assert.equal(directionOf(input),null);});
+}
+test('Sony diagonal hat, shoulders and triggers use standard positions',()=>{const data=report(1,64,1,8);data[8]=1;data[9]=3;data[5]=255;const input=decodeSonyReport('dualsense',data);assert.equal(input.buttons[12],true);assert.equal(input.buttons[15],true);assert.equal(input.buttons[4],true);assert.equal(input.buttons[5],true);assert.equal(input.buttons[6],true);assert.equal(input.buttons[0],false);});
+test('short and unknown HID reports are ignored',()=>{assert.equal(decodeSonyReport('dualsense',Buffer.from([1,2,3])),null);assert.equal(decodeSonyReport('dualshock4',Buffer.alloc(80)),null);});
+test('unrelated Sony keyboards and vendor interfaces are not opened',()=>{assert.equal(profileForDevice(sony),'dualsense');assert.equal(profileForDevice({...sony,usage:6}),null);assert.equal(profileForDevice({...sony,usagePage:0xff00}),null);assert.equal(profileForDevice({...sony,vendorId:0x1234}),null);});
+test('XInput axes, face buttons and D-pad normalize correctly',()=>{const input=decodeXInput({Gamepad:{wButtons:0x1000|0x0004,bRightTrigger:255,sThumbLY:32767,sThumbRX:-32768}});assert.equal(input.buttons[0],true);assert.equal(input.buttons[14],true);assert.equal(input.buttons[7],true);assert.equal(input.axes[1],-1);assert.equal(input.axes[2],-1);});
+test('held confirm is edge-triggered and requires release after reset',()=>{const engine=new InputRepeater(),neutral={buttons:[],axes:[0,0]},held={buttons:[true],axes:[0,0]};assert.deepEqual(engine.update(held,0),[]);engine.update(neutral,10);assert.deepEqual(engine.update(held,20),['confirm']);assert.deepEqual(engine.update(held,1000),[]);engine.reset();assert.deepEqual(engine.update(held,1100),[]);engine.update(neutral,1200);assert.deepEqual(engine.update(held,1210),['confirm']);});
+test('navigation repeats after a delay and drifting sticks do not navigate',()=>{const engine=new InputRepeater();engine.update({buttons:[],axes:[.1,-.1]},0);const down={buttons:[],axes:[0,.8]};assert.deepEqual(engine.update(down,10),['down']);assert.deepEqual(engine.update(down,100),[]);assert.deepEqual(engine.update(down,351),['down']);assert.deepEqual(engine.update(down,400),[]);assert.deepEqual(engine.update(down,460),['down']);engine.update({buttons:[],axes:[0,0]},500);assert.deepEqual(engine.update(down,510),['down']);});
+test('erase repeats only in keyboard context and cannot repeatedly toggle favorites',()=>{const engine=new InputRepeater();engine.update({buttons:[]},0);const held={buttons:[false,false,true]};assert.deepEqual(engine.update(held,10),['erase']);assert.deepEqual(engine.update(held,500),[]);assert.deepEqual(engine.update(held,600,true),[]);engine.update({buttons:[]},700,true);assert.deepEqual(engine.update(held,800,true),['erase']);assert.deepEqual(engine.update(held,1230,true),['erase']);});
+test('hotplug opens one handle, publishes input and releases handles on disconnect',async()=>{
+ let connected=true,opens=0;const handle=new EventEmitter();handle.close=async()=>{handle.closed=true;};const frames=[];
+ const service=new ControllerService({hid:{devicesAsync:async()=>connected?[sony]:[],HIDAsync:{open:async()=>{opens++;return handle;}}},xinput:null,onFrame:frame=>frames.push(frame)});
+ service.running=true;await service.scan();await service.scan();assert.equal(opens,1);handle.emit('data',report(1,64,1,8));assert.equal(frames[0].buttons[0],true);assert.ok(frames[0].id.startsWith('hid:'));assert.notEqual(frames[0].id,sony.path);
+ connected=false;await service.scan();assert.equal(handle.closed,true);assert.equal(service.status().devices.length,0);await service.stop();
+});
+test('an opening handle cannot survive application shutdown',async()=>{
+ let complete;const handle=new EventEmitter();handle.close=async()=>{handle.closed=true;};const service=new ControllerService({hid:{devicesAsync:async()=>[sony],HIDAsync:{open:()=>new Promise(resolve=>{complete=resolve;})}},xinput:null});
+ service.running=true;const pending=service.scan();await new Promise(resolve=>setImmediate(resolve));await service.stop();complete(handle);await pending;assert.equal(handle.closed,true);assert.equal(service.status().devices.length,0);
+});

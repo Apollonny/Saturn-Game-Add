@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="Satürn atmosferinde bağımsız Steam Game Add arayüzü.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: https://*.steamstatic.com https://*.akamaihd.net https://*.steampowered.com http://*.steamstatic.com http://*.akamaihd.net http://*.steampowered.com; media-src 'self'; connect-src 'self' http://127.0.0.1:* https://*.steampowered.com https://*.steamstatic.com; object-src 'none'; base-uri 'self'">
+  <title>Saturn — Steam Game Add</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="catalog-data.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="controller-core.js" defer></script>
+  <script src="controller-ui.js" defer></script>
+</head>
+<body>
+  <div id="desktop-titlebar" class="desktop-titlebar" hidden><img src="assets/giflogo.gif" alt="" class="desktop-logo" width="22" height="22"><span>Saturn</span><span class="desktop-caption">Steam Game Add</span></div>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+  <div class="space" aria-hidden="true"><canvas id="wallpaper-canvas"></canvas><video id="wallpaper" autoplay loop muted playsinline preload="auto" poster="assets/saturn-poster.jpg"><source src="assets/saturn.mp4" type="video/mp4"></video></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#add" aria-label="Saturn ana sayfa">
+        <img src="assets/giflogo.gif" alt="" class="planet-logo" width="38" height="38">
+        <span><strong>SATURN</strong><small>STEAM GAME ADD</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Ana gezinme">
+        <button class="nav-item active" data-view="add" aria-current="page"><span data-icon="plus"></span>Oyun ekle</button>
+        <button class="nav-item" data-view="library"><span data-icon="grid"></span>Oyun Yönetimi<span class="nav-count" id="library-count">0</span></button>
+        <button class="nav-item" data-view="history"><span data-icon="history"></span>İşlem geçmişi</button>
+      </nav>
+      <div class="header-tools"><button class="icon-button controller-button" id="controller-open" aria-label="Kumanda bağlantısı ve kullanım" title="Kumanda bağlantısı"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 6h10c2 0 3 2 3.5 4l1 7c.4 3-2 4-4 2l-3-3h-5l-3 3c-2 2-4.4 1-4-2l1-7C4 8 5 6 7 6ZM6 10v4m-2-2h4M16 11h.01M18 13h.01"/></svg><i class="controller-dot" id="controller-dot" aria-hidden="true"></i></button><button class="secondary-button restart-btn" id="restart-steam-btn" title="Steam'i Yeniden Başlat"><span data-icon="refresh"></span><span>Steam'i Yeniden Başlat</span></button><button class="icon-button" id="settings-open" aria-label="Ayarları aç" title="Ayarlar"><span data-icon="settings"></span></button></div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="hero-copy"><h1 id="hero-title">STEAM GAME ADD</h1><p>Yeni bir oyun. Yeni bir evren. Kütüphaneni genişlet.</p></div>
+      </section>
+
+      <section id="intake-section" class="intake-section" aria-label="Steam oyunu bul">
+        <form id="intake-form" novalidate>
+          <label class="input-wrap" for="game-input"><span data-icon="search"></span><input id="game-input" aria-label="Oyun adı, Steam App ID veya mağaza bağlantısı" autocomplete="off" spellcheck="false" placeholder="Oyun adı, App ID veya Steam bağlantısı" aria-describedby="input-feedback"><kbd aria-hidden="true">/</kbd></label>
+          <button class="primary-button" id="find-button" type="submit">Oyunu bul<span data-icon="arrow-up-right"></span></button>
+        </form>
+        <div class="intake-meta"><p id="input-feedback" aria-live="polite"><span data-icon="link"></span>Steam mağaza bağlantısını doğrudan yapıştırabilirsin.</p></div>
+      </section>
+
+      <section class="workspace" id="add-view">
+        <div class="catalog">
+          <div class="section-heading"><div><h2>Steam evrenini keşfet</h2><p id="catalog-source-label">Geniş katalogdan bir kapak seç, gerisini kuyruğa bırak.</p></div><div class="catalog-heading-actions"><button class="queue-launcher" id="import-toggle-btn" title="Dosyaları İçe Aktar"><span data-icon="download"></span><span>Dosya İçe Aktar</span></button><button class="queue-launcher" id="queue-open" aria-haspopup="dialog" aria-controls="queue-dialog"><span data-icon="list"></span><span>Kuyruk</span><span class="count-badge" id="queue-count">0</span></button><span class="result-count" id="result-count">Katalog yükleniyor</span></div></div>
+          
+          <div id="dropzone-section" class="dropzone-section" hidden>
+            <div class="dropzone-header">Dosyalar zaten sizde mi?</div>
+            <div id="import-dropzone" class="dropzone-box">
+              <div class="dropzone-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div class="dropzone-content">
+                <h3>.lua, .manifest veya .zip dosyalarını buraya bırakın</h3>
+                <p>...ya da o oyunu eklemek için bir SteamDB / Steam mağaza bağlantısı sürükleyin.</p>
+                <button class="secondary-button" id="browse-files-btn"><span data-icon="grid"></span><span>Dosyalara gözat...</span></button>
+                <input type="file" id="hidden-file-input" multiple accept=".lua,.manifest,.zip,.acf,.txt,.json" hidden>
+              </div>
+            </div>
+          </div>
+          <div class="catalog-tools"><div class="filter-list" role="group" aria-label="Oyun kategorisi"><button class="filter active" data-filter="all" aria-pressed="true">Tümü</button><button class="filter" data-filter="Aksiyon" aria-pressed="false">Aksiyon</button><button class="filter" data-filter="RPG" aria-pressed="false">RPG</button><button class="filter" data-filter="Bağımsız" aria-pressed="false">Bağımsız</button><button class="filter favorite-filter" data-filter="favorites" aria-pressed="false" aria-label="Favoriler"><span data-icon="heart"></span></button></div><label class="sort-wrap"><span data-icon="sort"></span><select id="sort-select" aria-label="Oyunları sırala"><option value="featured">Öne çıkanlar</option><option value="az">İsim: A–Z</option><option value="za">İsim: Z–A</option></select><span data-icon="chevron-down"></span></label></div>
+          <div id="search-active" class="search-active" hidden><span></span><button id="clear-search" class="text-button">Aramayı temizle<span data-icon="x"></span></button></div>
+          <div class="game-grid" id="game-grid" aria-label="Oyun seçimi"></div>
+          <div id="catalog-status" class="catalog-status" role="status" aria-live="polite"></div>
+          <div class="pagination" aria-label="Katalog sayfaları"><button id="catalog-prev" class="secondary-button" disabled><span data-icon="arrow-left"></span>Önceki</button><span id="catalog-page-label"></span><button id="catalog-next" class="secondary-button">Sonraki<span data-icon="arrow-right"></span></button><button id="catalog-retry" class="text-button" hidden>Steam'e yeniden bağlan</button></div>
+          <div class="catalog-empty" id="catalog-empty" hidden><span data-icon="search"></span><h3>Bu yörüngede oyun bulunamadı</h3><p>Başka bir oyun adı dene veya doğrudan App ID gir.</p><button id="reset-filters" class="secondary-button">Filtreleri temizle</button></div>
+          <div class="catalog-footnote"><span data-icon="info"></span><span>Canlı sonuçlar Steam mağazasından gelir. Bağlantı yoksa yerel katalogla devam edebilirsin.</span></div>
+        </div>
+
+      </section>
+
+      <div id="queue-dialog" class="queue-dialog" popover="auto" role="dialog" aria-modal="false" aria-labelledby="queue-title">
+        <section class="queue-panel" aria-label="Oyun ekleme kuyruğu">
+          <div class="queue-heading"><h2 id="queue-title"><span data-icon="list"></span>Ekleme kuyruğu</h2><button class="icon-button" id="queue-close" aria-label="Kuyruğu kapat"><span data-icon="x"></span></button></div>
+          <div id="selection-panel" class="selection-panel" hidden></div>
+          <div id="queue-empty" class="queue-empty"><div class="empty-orbits"><span data-icon="plus"></span></div><h3>Yeni bir yörüngeye hazır</h3><p>Katalogdan bir oyun seç<br>veya App ID ile ekle.</p></div>
+          <ol id="queue-list" class="queue-list" aria-label="Kuyruktaki oyunlar"></ol>
+          <div class="queue-actions"><button class="primary-button run-button" id="run-queue" disabled><span data-icon="play"></span><span>Kuyruğu çalıştır</span><span data-icon="arrow-right"></span></button><div class="queue-action-meta"><span id="queue-total">0 oyun bekliyor</span><button id="clear-queue" class="text-button" disabled>Temizle</button></div></div>
+          <div class="preview-info"><span data-icon="info"></span><p><strong>Steam Game Add</strong>İşlemler Steam kütüphanenizi günceller.<br>Değişikliklerin görünmesi için Steam'i yeniden başlatın.</p></div>
+        </section>
+      </div>
+
+      <section id="library-view" class="alternate-view" hidden><div class="view-heading"><div><h1>Oyun Yönetimi</h1><p>Eklediğin tüm oyunları yönet, ayarla ve özelleştir.</p></div><button class="secondary-button" id="library-add"><span data-icon="plus"></span>Oyun ekle</button></div><div id="library-grid" class="game-grid"></div><div class="large-empty" id="library-empty"><span data-icon="grid"></span><h2>Oyun Yönetimi yeni dünyalar bekliyor</h2><p>Bir oyun ekleyip Oyun Yönetimi panelinden düzenleyebilirsiniz.</p><button class="primary-button" id="library-discover">Oyunları keşfet<span data-icon="arrow-right"></span></button></div></section>
+      <section id="history-view" class="alternate-view" hidden><div class="view-heading"><div><h1>İşlem geçmişi</h1><p>Bu cihazdaki oyun ekleme işlemlerinin kaydı.</p></div><button class="secondary-button" id="export-history" disabled><span data-icon="download"></span>Dışa aktar</button></div><div class="history-table-wrap" id="history-table-wrap" hidden><table class="history-table"><thead><tr><th>Oyun</th><th>App ID</th><th>Durum</th><th>Zaman</th></tr></thead><tbody id="history-body"></tbody></table></div><div class="large-empty" id="history-empty"><span data-icon="history"></span><h2>Henüz bir işlem yok</h2><p>Kuyrukta tamamlanan ekleme işlemleri burada görünecek.</p><button class="primary-button" id="history-start">İlk oyununu seç<span data-icon="arrow-right"></span></button></div></section>
+    </main>
+
+    <footer class="footer"><span><i class="status-dot"></i>Yerel çalışma alanı</span><span>SATURN <b>/</b> Steam Game Add</span><button class="text-button" id="about-open">Bu arayüz hakkında<span data-icon="arrow-up-right"></span></button></footer>
+  </div>
+
+  <dialog id="settings-dialog" class="app-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Yörüngeni düzenle</h2><button class="icon-button dialog-close" aria-label="Ayarları kapat"><span data-icon="x"></span></button></div><p class="dialog-description">Görünümü ve Steam entegrasyonunu ayarla.</p><label class="setting-row" for="setting-motion"><span><strong>Canlı arka plan</strong><small>Satürn videosunu döngüde oynat.</small></span><input type="checkbox" class="switch" id="setting-motion"></label><label class="setting-row" for="setting-compact"><span><strong>Kompakt galeri</strong><small>Aynı alanda daha fazla oyun göster.</small></span><input type="checkbox" class="switch" id="setting-compact"></label><div class="setting-row"><span><strong>Steam İstemcisi</strong><small>Steam'i kapatıp yeniden başlat.</small></span><button class="secondary-button" id="settings-restart-steam"><span data-icon="refresh"></span><span>Steam'i Yeniden Başlat</span></button></div><div class="dialog-note"><span data-icon="info"></span><p>Tercihlerin yalnızca bu cihazda saklanır.</p></div></dialog>
+  <dialog id="about-dialog" class="app-dialog" aria-labelledby="about-title"><div class="dialog-heading"><h2 id="about-title">Saturn · Game Add</h2><button class="icon-button dialog-close" aria-label="Bilgiyi kapat"><span data-icon="x"></span></button></div><p class="dialog-description">Steam Game Add için bağımsız, etkileşimli bir arayüz.</p><p class="about-copy">Oyun arama, App ID seçimi, favoriler, kuyruk, oyun yönetimi ve işlem geçmişi sunar. Kuyruk işlemleri yerel Steam kurulumuyla çalışır; başarısız işlemler yeniden denemek için kuyrukta kalır.</p><p class="about-copy">Satürn animasyonu sağladığın masaüstü videosudur. Oyun kapakları Steam içerik sunucusundan alınmıştır.</p></dialog>
+  <dialog id="game-manage-dialog" class="app-dialog game-manage-dialog" aria-labelledby="manage-title"><div class="manage-cover-header"><img id="manage-cover-img" class="manage-cover-img" alt=""><button class="icon-button dialog-close manage-close" aria-label="Pencereyi kapat"><span data-icon="x"></span></button></div><div class="manage-body"><h2 id="manage-title" class="manage-title">Oyun Adı</h2><div class="manage-sub"><span>App ID: <strong id="manage-appid">0</strong></span><button class="icon-button icon-button-sm" id="manage-copy-appid-inline" title="App ID Kopyala"><span data-icon="link"></span></button><span class="manage-dot">•</span><span id="manage-meta">Oyun Yönetiminde</span></div><div id="manage-sources-badge" class="manage-sources-badge"></div><div class="manage-section-label">Eylemler</div><div class="manage-actions-list"><button class="manage-action-btn launch-action" id="manage-act-launch-game"><span data-icon="play"></span><span>Oyunu Başlat (Steam)</span></button><button class="manage-action-btn primary-action" id="manage-act-depots"><span data-icon="layers"></span><span>Depoları & Versiyon Geçmişini Yönet</span></button><div class="manage-grid-2"><button class="manage-action-btn" id="manage-act-dlc-unpacker"><span data-icon="plus"></span><span>DLC Unpacker / DLC Üret</span></button><button class="manage-action-btn" id="manage-act-redownload"><span data-icon="download"></span><span>Yeniden İndir / Güncelle</span></button></div><button class="manage-action-btn" id="manage-act-launch-options"><span data-icon="settings"></span><span>Başlatma Seçenekleri...</span></button><div class="manage-grid-2"><button class="manage-action-btn" id="manage-act-drm-remove"><span data-icon="check"></span><span>Steam DRM / Denuvo</span></button><button class="manage-action-btn" id="manage-act-onlinefix"><span data-icon="refresh"></span><span>OnlineFix / Multiplayer</span></button></div><div class="manage-grid-2"><button class="manage-action-btn" id="manage-act-view-lua-content"><span data-icon="info"></span><span>.lua İçeriğini İncele</span></button><button class="manage-action-btn" id="manage-act-show-lua"><span data-icon="grid"></span><span>Klasörde Göster (.lua)</span></button></div><div class="manage-grid-2"><button class="manage-action-btn" id="manage-act-store-page"><span data-icon="info"></span><span>Mağaza Sayfası</span></button><button class="manage-action-btn" id="manage-act-open-steam"><span data-icon="arrow-up-right"></span><span>Steam'de Aç</span></button></div><button class="manage-action-btn danger-action" id="manage-act-delete-lua"><span data-icon="x"></span><span>Bu lua'yı sil</span></button></div></div></dialog>
+  <dialog id="lua-viewer-dialog" class="app-dialog lua-viewer-dialog" aria-labelledby="lua-viewer-title"><div class="dialog-heading"><h2 id="lua-viewer-title">.lua Dosya İçeriği</h2><button class="icon-button dialog-close" aria-label="Kapat"><span data-icon="x"></span></button></div><div class="lua-viewer-sub" id="lua-viewer-filename">1091500.lua</div><pre id="lua-viewer-code" class="lua-code-block"></pre><div class="dialog-actions"><button class="secondary-button" id="lua-viewer-copy"><span data-icon="link"></span><span>Kodu Kopyala</span></button><button class="secondary-button dialog-close"><span>Kapat</span></button></div></dialog>
+  <dialog id="vault-dialog" class="app-dialog vault-dialog" aria-labelledby="vault-dialog-title"><div class="dialog-heading"><h2 id="vault-dialog-title">Depo & Versiyon Geçmişi (Vault)</h2><button class="icon-button dialog-close" aria-label="Kapat"><span data-icon="x"></span></button></div><p class="dialog-description">Bu oyun için kaydedilmiş manifest/build sürümleri:</p><div id="vault-variants-list" class="vault-variants-list"></div><div class="dialog-actions"><button class="secondary-button dialog-close"><span>Kapat</span></button></div></dialog>
+  <dialog id="drm-fix-dialog" class="app-dialog drm-fix-dialog" aria-labelledby="drm-dialog-title"><div class="dialog-heading"><h2 id="drm-dialog-title">Steam DRM & Denuvo Düzeltmeleri</h2><button class="icon-button dialog-close" aria-label="Kapat"><span data-icon="x"></span></button></div><p class="dialog-description">Oyun korumasını kaldırmak veya güncel koruma baypaslarını uygulamak için yöntem seçin:</p><div id="drm-fixes-list" class="drm-fixes-list"></div><div class="setting-row" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line-soft)"><span><strong>Oyun Yolu (Install Directory)</strong><small>DLL veya EXE koruma yamaları için oyunun kurulu olduğu dizin:</small></span><input type="text" id="drm-install-dir" class="dialog-input" placeholder="C:\Program Files (x86)\Steam\steamapps\common\..." style="width:220px;padding:6px 10px;background:rgba(0,0,0,0.4);border:1px solid var(--line);border-radius:6px;color:#fff;font-size:11px;"></div><div class="dialog-actions"><button class="secondary-button dialog-close"><span>Kapat</span></button></div></dialog>
+  <dialog id="launch-options-dialog" class="app-dialog" aria-labelledby="launch-options-title">
+    <div class="dialog-heading">
+      <h2 id="launch-options-title">Başlatma Seçenekleri</h2>
+      <button class="icon-button dialog-close" aria-label="Kapat"><span data-icon="x"></span></button>
+    </div>
+    <p class="dialog-description" id="launch-options-desc">Oyun için Steam başlatma parametrelerini girin (ör. <code>-novid -high -dx11</code>):</p>
+    <div class="setting-row" style="flex-direction:column;align-items:stretch;gap:8px;padding-top:10px">
+      <label for="launch-options-input" style="font-size:12px;color:var(--muted)">Komut Satırı Parametreleri:</label>
+      <input type="text" id="launch-options-input" class="dialog-input" placeholder="-novid -high -fullscreen" style="width:100%;padding:10px 12px;background:rgba(0,0,0,0.5);border:1px solid var(--line);border-radius:8px;color:#fff;font-size:13px">
+    </div>
+    <div class="dialog-actions" style="margin-top:20px;display:flex;justify-content:flex-end;gap:10px">
+      <button type="button" class="secondary-button" id="launch-options-clear-btn">Temizle</button>
+      <button type="button" class="primary-button" id="launch-options-save-btn" style="height:36px;padding:0 18px">Kaydet</button>
+    </div>
+  </dialog>
+  <dialog id="onlinefix-dialog" class="app-dialog onlinefix-dialog" aria-labelledby="onlinefix-dialog-title">
+    <div class="dialog-heading">
+      <h2 id="onlinefix-dialog-title">OnlineFix & Multiplayer Entegratörü</h2>
+      <button class="icon-button dialog-close" aria-label="Kapat"><span data-icon="x"></span></button>
+    </div>
+    <p class="dialog-description">İndirdiğiniz OnlineFix / Co-op yamasını (.zip, .rar, .dll) seçip veya sürükleyip doğrudan oyun klasörüne kurabilirsiniz:</p>
+    <div id="onlinefix-details" class="onlinefix-details"></div>
+
+    <div class="setting-row">
+      <label class="setting-label" for="onlinefix-install-dir">
+        <strong>Oyun Klasörü (Install Directory)</strong>
+        <small>Otomatik tespit edilen oyun klasörü (steam_api64.dll & OnlineFix.ini kopyalanır):</small>
+      </label>
+      <div class="input-with-button">
+        <input type="text" id="onlinefix-install-dir" class="dialog-input" placeholder="Oyun klasörü otomatik aranıyor...">
+        <button type="button" class="secondary-button" id="onlinefix-browse-dir-btn" title="Klasör Seç"><span data-icon="grid"></span> Gözat</button>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <label class="setting-label" for="onlinefix-archive-path">
+        <strong>OnlineFix Yama Arşivi / Dosyası</strong>
+        <small>.zip, .rar, .7z veya ayıklanmış yama DLL/INI dosyası:</small>
+      </label>
+      <div class="input-with-button">
+        <input type="text" id="onlinefix-archive-path" class="dialog-input" readonly placeholder="Henüz dosya seçilmedi...">
+        <button type="button" class="secondary-button" id="onlinefix-browse-archive-btn" title="Yama Dosyası Seç"><span data-icon="download"></span> Gözat</button>
+      </div>
+    </div>
+
+    <div id="onlinefix-dropzone" class="onlinefix-dropzone-box">
+      <div class="dropzone-title">📁 Yama Paketini (.zip, .rar, .dll) Buraya Bırakın</div>
+      <div class="dropzone-sub">Dosyalar otomatik ayıklanır, steam_api64.dll yedeklenir ve FakeAppId=480 yazılır.</div>
+    </div>
+
+    <div class="dialog-actions" style="margin-top:20px">
+      <button class="primary-button" id="onlinefix-apply-btn">Gerçek OnlineFix Yamasını Kur</button>
+      <button class="secondary-button dialog-close">Kapat</button>
+    </div>
+  </dialog>
+  <div id="mobile-tray" class="mobile-tray" aria-label="Hızlı kuyruk işlemi" hidden></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="controller-dialog" class="app-dialog controller-dialog" aria-labelledby="controller-title">
+    <div class="dialog-heading"><h2 id="controller-title">Kumanda bağlantısı</h2><button class="icon-button dialog-close" aria-label="Kumanda penceresini kapat"><span data-icon="x"></span></button></div>
+    <p id="controller-status" class="dialog-description" role="status" aria-live="polite">Kumanda bağlantısı kontrol ediliyor…</p>
+    <div id="controller-device-list" class="controller-device-list"></div>
+    <label class="setting-row" for="controller-enabled"><span><strong>Kumandayla kontrol</strong><small>Menüler, oyun kartları ve sanal klavye.</small></span><input type="checkbox" class="switch" id="controller-enabled" checked></label>
+    <dl class="controller-mapping"><div><dt>Analog / D-pad</dt><dd>Gezin</dd></div><div><dt>A / ✕</dt><dd>Seç</dd></div><div><dt>B / ○</dt><dd>Geri dön</dd></div><div><dt>Y / △</dt><dd>Arama klavyesi</dd></div><div><dt>X / □</dt><dd>Favori / harf sil</dd></div><div><dt>LB–RB / L1–R1</dt><dd>Sekmeleri değiştir</dd></div><div><dt>View / Share</dt><dd>Kuyruğu aç</dd></div><div><dt>Menu / Options</dt><dd>Ayarları aç</dd></div><div><dt>Sağ analog</dt><dd>Sayfayı kaydır</dd></div></dl>
+    <p class="controller-note">DualShock 4 ve DualSense doğrudan HID ile; Xbox kumandaları Windows XInput ile bağlanır. DS4Windows gerekli değildir. USB veya Bluetooth bağlantısı kullanabilirsin.</p>
+    <div class="dialog-actions"><button class="secondary-button" id="controller-rescan">Bağlantıyı yenile</button></div>
+  </dialog>
+  <dialog id="controller-keyboard" class="app-dialog controller-keyboard" aria-labelledby="controller-keyboard-title">
+    <div class="dialog-heading"><h2 id="controller-keyboard-title">Oyun ara</h2><button class="icon-button dialog-close" aria-label="Sanal klavyeyi kapat"><span data-icon="x"></span></button></div>
+    <textarea id="controller-keyboard-value" class="keyboard-preview" rows="2" readonly tabindex="-1" aria-label="Yazılan metin"></textarea>
+    <div id="controller-key-grid" class="controller-key-grid"></div>
+    <div class="keyboard-tools"><button type="button" class="secondary-button" id="keyboard-case">Aa</button><button type="button" class="secondary-button" id="keyboard-symbols">123 / #</button><button type="button" class="secondary-button keyboard-space" id="keyboard-space">Boşluk</button><button type="button" class="secondary-button" id="keyboard-erase">Sil</button><button type="button" class="text-button" id="keyboard-clear">Temizle</button></div>
+    <div class="keyboard-bottom"><p>Y / △ Boşluk · X / □ Sil · B / ○ Vazgeç · Menu / Options Uygula</p><button type="button" class="primary-button" id="keyboard-done">Ara<span data-icon="arrow-right"></span></button></div>
+    <p id="keyboard-message" class="keyboard-message" role="status" aria-live="polite"></p>
+  </dialog>
+  <dialog id="controller-confirm" class="app-dialog" aria-labelledby="controller-confirm-title">
+    <div class="dialog-heading"><h2 id="controller-confirm-title">Oyunu sil?</h2></div><p class="dialog-description" id="controller-confirm-copy"></p><div class="dialog-actions"><button type="button" class="secondary-button" id="controller-confirm-cancel">Vazgeç</button><button type="button" class="primary-button" id="controller-confirm-accept">Sil</button></div>
+  </dialog>
+  <dialog id="controller-files" class="app-dialog controller-files" aria-labelledby="controller-files-title">
+    <div class="dialog-heading"><h2 id="controller-files-title">Dosya seç</h2><button class="icon-button dialog-close" aria-label="Dosya seçimini iptal et"><span data-icon="x"></span></button></div>
+    <div class="file-browser-toolbar"><button type="button" class="secondary-button" id="controller-files-up">Üst klasör</button><input id="controller-files-path" class="dialog-input" aria-label="Klasör yolu" placeholder="Klasör yolu gir"><button type="button" class="secondary-button" id="controller-files-go">Git</button></div>
+    <p id="controller-files-status" class="controller-note" role="status" aria-live="polite"></p><div id="controller-files-list" class="controller-files-list"></div>
+    <div class="dialog-actions"><button type="button" class="primary-button" id="controller-files-select" hidden>Bu klasörü seç</button></div>
+  </dialog>
+  <div class="controller-hints" id="controller-hints" hidden aria-hidden="true"><span id="controller-hint-confirm">A Seç</span><span id="controller-hint-back">B Geri</span><span id="controller-hint-search">Y Ara</span></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Dependencies and generated installers
+node_modules/
+dist/
+release/
+
+# Local runtime data and logs
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+
+# Local test output
+playwright-report/
+test-results/
+screenshots/

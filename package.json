@@ -1,0 +1,76 @@
+{
+  "name": "saturn-steam-game-add-ui",
+  "version": "1.5.0",
+  "description": "Saturn atmosferinde Windows için Steam Game Add arayüzü",
+  "author": "Saturn",
+  "private": true,
+  "main": "electron/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "preview": "node server.mjs",
+    "check": "node --check app.js && node --check controller-core.js && node --check controller-ui.js && node --check electron/main.cjs && node --check electron/preload.cjs && node --check electron/controllers.cjs && node --check electron/steam-catalog.cjs && node --check electron/steam-add-backend.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "test:ui": "node tests/bughunt-ui.cjs",
+    "test:covers": "node tests/covers-ui.cjs",
+    "test:controllers": "node tests/controllers-ui.cjs",
+    "test:controllers:native": "node tests/controllers-native.cjs",
+    "dist:win": "electron-builder --win portable --x64",
+    "dist:setup": "electron-builder --win nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "local.saturn.gameadd",
+    "productName": "Saturn Game Add",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "style.css",
+      "app.js",
+      "controller-core.js",
+      "controller-ui.js",
+      "assets/**/*",
+      "electron/**/*",
+      "package.json",
+      "catalog-data.js",
+      "available-appids.json"
+    ],
+    "asar": true,
+    "npmRebuild": false,
+    "asarUnpack": [
+      "assets/saturn.mp4",
+      "node_modules/node-hid/prebuilds/HID-win32-x64/*.node",
+      "node_modules/@koromix/koffi-win32-x64/**/*.node"
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "Saturn-Game-Add-${version}-Windows.exe"
+    },
+    "nsis": {
+      "artifactName": "Saturn-Game-Add-${version}-Setup.exe",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Saturn Game Add",
+      "deleteAppDataOnUninstall": false,
+      "installerLanguages": ["tr_TR", "en_US"],
+      "language": "1055"
+    }
+  },
+  "dependencies": {
+    "koffi": "3.3.3",
+    "node-hid": "3.4.0",
+    "node-html-parser": "9.0.4"
+  }
+}
