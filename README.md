@@ -7,6 +7,12 @@ Windows için Steam oyunlarını arayıp kuyruğa ekleyebileceğin masaüstü uy
   <img src="assets/screenshots/steam-game-add-library.png" width="49%" alt="Saturn oyun yönetimi ekranı">
 </p>
 
+## Windows kurulumu
+
+[Windows kurulum dosyasını indir (v1.5.0)](https://github.com/Apollonny/Saturn-Game-Add/releases/download/v1.5.0/Saturn-Game-Add-1.5.0-Setup.exe).
+
+Kurulum dijital olarak imzalanmamıştır; Windows SmartScreen uyarısı gösterebilir. SHA-256 ve sürüm bilgileri [GitHub release sayfasında](https://github.com/Apollonny/Saturn-Game-Add/releases/tag/v1.5.0) yer alır.
+
 ## Özellikler
 
 - Steam oyunlarını ad, App ID veya mağaza bağlantısıyla ara; kategori ve favorilere göre göz at.
